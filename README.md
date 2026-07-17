@@ -4,6 +4,13 @@ A simple full-stack app for beginners: paste code, pick a language, and get an
 AI-generated explanation (summary, time/space complexity, issues, and
 suggestions) powered by the Google Gemini API.
 
+# demo
+
+
+https://github.com/user-attachments/assets/99180bb0-2214-491b-ae71-35dfd2dc9d59
+
+
+
 ```
 ai-code-explainer/
 ├── backend/     Spring Boot REST API (Java)
