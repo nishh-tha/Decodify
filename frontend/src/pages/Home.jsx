@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LanguageSelector from '../components/LanguageSelector.jsx'
 import CodeInput from '../components/CodeInput.jsx'
 import ExplainButton from '../components/ExplainButton.jsx'
@@ -12,6 +12,32 @@ function Home() {
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const loadingMessages = [
+    'Reading your code...',
+    'Tracing the logic...',
+    'Breaking it down...',
+    'Checking for edge cases...',
+    'Finding ways to improve it...',
+    'Turning code into human language...',
+  ]
+
+  const [loadingMessage, setLoadingMessage] = useState(loadingMessages[0])
+
+  useEffect(() => {
+    if (!loading) {
+      setLoadingMessage(loadingMessages[0])
+      return
+    }
+
+    let index = 0
+
+    const interval = setInterval(() => {
+      index = (index + 1) % loadingMessages.length
+      setLoadingMessage(loadingMessages[index])
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [loading])
 
   const handleExplain = async () => {
     if (!code.trim()) {
@@ -74,6 +100,7 @@ function Home() {
       {loading && (
         <div className="loading-row">
           <Spinner />
+          <span className="loading-message">{loadingMessage}</span>
         </div>
       )}
 

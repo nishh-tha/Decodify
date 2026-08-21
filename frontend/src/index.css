@@ -402,3 +402,17 @@ button {
     gap: 10px;
   }
 }
+
+.loading-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.loading-message {
+  font-size: 14px;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
