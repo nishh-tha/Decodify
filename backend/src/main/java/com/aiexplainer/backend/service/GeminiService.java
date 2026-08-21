@@ -49,34 +49,26 @@ public class GeminiService {
      * We explicitly ask for raw JSON only, so the backend can parse it directly.
      */
     private String buildPrompt(String language, String code) {
-        return """
-                You are a friendly programming tutor helping a beginner understand a piece of code.
+    return """
+            You are a beginner-friendly programming tutor.
 
-                Analyze the following %s code and explain it.
+            Analyze this %s code and return ONLY valid JSON in exactly this format:
+            {
+              "summary": "Concise explanation of what the code does",
+              "timeComplexity": "Big-O with a short reason",
+              "spaceComplexity": "Big-O with a short reason",
+              "issues": ["2-4 short bugs or edge cases"],
+              "suggestions": ["2-4 short improvements"]
+            }
 
-                Respond with ONLY a raw JSON object (no markdown, no code fences, no extra text)
-                using EXACTLY this structure:
-                {
-                  "summary": "A simple, beginner-friendly explanation of what the code does",
-                  "timeComplexity": "The Big-O time complexity with a short reason",
-                  "spaceComplexity": "The Big-O space complexity with a short reason",
-                  "issues": ["A possible bug or edge case", "Another possible issue"],
-                  "suggestions": ["A suggestion to improve readability or performance", "Another suggestion"]
-                }
+            Keep every field concise and beginner-friendly.
+            If there are no obvious issues, use ["No obvious issues found."].
+            Return no markdown or extra text.
 
-                Rules:
-                - Keep every field concise and easy for a beginner to understand.
-                - "issues" and "suggestions" must be JSON arrays of short strings (2-4 items each).
-                - If there are no obvious issues, return an array with a single string saying so.
-                - Do not wrap the JSON in markdown code fences.
-                - Do not include any text before or after the JSON object.
-
-                Code:
-                ```%s
-                %s
-                ```
-                """.formatted(language, language, code);
-    }
+            Code:
+            %s
+            """.formatted(language, code);
+}
 
     /**
      * Sends the prompt to the Gemini generateContent endpoint and
@@ -90,6 +82,12 @@ public class GeminiService {
             part.put("text", prompt);
             content.put("parts", List.of(part));
             requestBody.put("contents", List.of(content));
+
+            var generationConfig = new java.util.HashMap<String, Object>();
+            generationConfig.put("maxOutputTokens", 500);
+            generationConfig.put("temperature", 0.2);
+
+            requestBody.put("generationConfig", generationConfig);
 
             JsonNode response = webClient.post()
                     .uri(apiUrl + "?key=" + apiKey)
