@@ -10,7 +10,9 @@ Paste a code snippet, select its programming language, and Decodify uses the **G
 
 ## Demo
 
-https://github.com/user-attachments/assets/99180bb0-2214-491b-ae71-35dfd2dc9d59
+
+https://github.com/user-attachments/assets/ffea1faa-9e2c-47da-98b4-dec7d38b4071
+
 
 ## Features
 
