@@ -67,7 +67,7 @@ function Home() {
     <div className="app">
       <div className="app-header">
         <div className="logo-mark">{'</>'}</div>
-        <h1>AI Code Explainer</h1>
+        <h1>Decodify</h1>
       </div>
       <p className="app-subtitle">
         Paste any snippet, pick its language, and get a beginner-friendly breakdown
