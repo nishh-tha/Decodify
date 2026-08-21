@@ -54,12 +54,12 @@ function ResultCards({ result }) {
 
         <div className="card">
           <div className="card-label">Time Complexity</div>
-          <div className="card-body mono">{result.timeComplexity}</div>
+          <div className="card-body">{result.timeComplexity}</div>
         </div>
 
         <div className="card">
           <div className="card-label">Space Complexity</div>
-          <div className="card-body mono">{result.spaceComplexity}</div>
+          <div className="card-body">{result.spaceComplexity}</div>
         </div>
 
         <div className="card issues">
