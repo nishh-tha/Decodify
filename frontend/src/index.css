@@ -341,11 +341,6 @@ button {
   color: var(--text);
 }
 
-.card-body.mono {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  color: var(--accent);
-}
 
 .card ul {
   margin: 0;
