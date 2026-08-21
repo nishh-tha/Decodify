@@ -1,4 +1,4 @@
-# AI Code Explainer
+# Decodify
 
 A simple full-stack app for beginners: paste code, pick a language, and get an
 AI-generated explanation (summary, time/space complexity, issues, and
